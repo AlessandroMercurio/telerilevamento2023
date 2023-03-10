@@ -3,4 +3,4 @@
 
 install.packages("raster") # outside R use ""
 
-library(raster) # call packages
+library(raster) # call package
