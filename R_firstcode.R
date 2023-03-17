@@ -17,7 +17,6 @@ cl <- colorRampPalette(c("red", "orange", "yellow")) (100) # to change colour ra
 plot(l2011, col=cl) 
 
 # plotting one element
-# 
 plot(l2011[[4]], col=cl)
 
 # Exercise: change the colour gamut for all images
@@ -58,6 +57,28 @@ plot(l2011[[3]], col=clr)
 # nir
 clnir <- colorRampPalette(c("red", "orange", "yellow")) (100)
 plot(l2011[[4]], col=clnir)
+
+# RGB plotting
+plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(l2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(l2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(l2011, r=3, g=2, b=4, stretch="Lin")
+
+# Multiframe with natural and false colours
+par(mfrow = c(2,1)) 
+plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(l2011, r=4, g=3, b=2, stretch="Lin")
+
+# Histogram stretching
+# Multiframe with natural and false colours
+par(mfrow = c(2,1)) 
+plotRGB(l2011, r=3, g=2, b=1, stretch="Hist")
+plotRGB(l2011, r=4, g=3, b=2, stretch="Hist")
+
+# Linear vs Histogram stretching
+par(mfrow = c(2,1)) 
+plotRGB(l2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(l2011, r=4, g=3, b=2, stretch="Hist")
 
 
 
