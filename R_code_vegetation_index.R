@@ -7,10 +7,14 @@ setwd("C:/lab/")
 l1992 <- brick("defor1_.png")
 l1992
 plotRGB(l1992, 1, 2, 3, stretch="Lin")
-# infrarosso è la banda numero 1
+
+# layer 1= NIR
+# layer 2 = red
+# layer 3 = green
 
 # Exercise: calculate DVI for 1992
-# calcolo tra ogni pixel tra rosso ed infrarosso
+# is the difference between NIR and red 
+
 dvi1992= l1992[[1]] - l1992[[2]]
 dvi1992
 cl <- colorRampPalette(c('darkblue', 'yellow', 'red', 'black')) (100)
