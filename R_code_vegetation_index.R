@@ -5,8 +5,9 @@ setwd("C:/lab/")
 
 # Exercise: import defor1_.png
 l1992 <- brick("defor1_.png")
-l1992
+l2006 <- brick("defor2_.png")
 plotRGB(l1992, 1, 2, 3, stretch="Lin")
+plotRGB(l2006, 1, 2, 3, stretch="Lin")
 
 # layer 1= NIR
 # layer 2 = red
