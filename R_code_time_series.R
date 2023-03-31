@@ -17,3 +17,18 @@ rlist
 # apply to the created list the function raster
 import <- lapply(rlist,raster)
 import
+
+# this function stacks toghether the four images (similar to "par" function but creates a unique file)
+TGr <- stack(import)
+plot(TGr)
+
+plotRGB(TGr, 1, 2, 3, stretch="Lin")
+plotRGB(TGr, 2, 3, 4, stretch="Lin")
+plotRGB(TGr, 4, 3, 2, stretch="Lin")
+
+# difference:
+dift = TGr[[2]] - TGr[[1]]
+
+cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
+plot(TGr, col=cl)
+
