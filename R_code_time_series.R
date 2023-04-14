@@ -34,45 +34,48 @@ plot(TGr, col=cl)
 
 
 #########
-### Example 2: NO2 decrease during the lockdownperiod
+### Example 2: NO2 decrease during the lockdown period
 #########
 
 library(raster)
-
 setwd("C:/lab/en")
 
-lst_2000<-raster("lst_2000.tif")
-lst_2005<-raster("lst_2005.tif")
-lst_2010<-raster("lst_2010.tif")
-lst_2015<-raster("lst_2015.tif")
+# Importing a file
+en_first <- raster("EN_0001.png")
 
-# Create a list of different files with same object
-rlist <- list.files(pattern="lst")
-rlist
+rimp <- lapply(rlist, raster)
 
-# apply to the created list the function raster
-import <- lapply(rlist,raster)
-import
+cl <- colorRampPalette(c('red','orange','yellow'))(100) 
+plot(en_first, col=cl)
 
-# this function stacks toghether the four images (similar to "par" function but creates a unique file)
-TGr <- stack(import)
-plot(TGr)
+# Let's import the whole set
+rlist <- list.files(pattern="EN")
+import <- lapply(rlist, raster)
+EN <-stack(import)
 
-plotRGB(TGr, 1, 2, 3, stretch="Lin")
-plotRGB(TGr, 2, 3, 4, stretch="Lin")
-plotRGB(TGr, 4, 3, 2, stretch="Lin")
+plot(EN, col=cl)
+par(mfrow=c(1,2))
+plot(en_first, col=cl)
+plot(en[[1]], col=cl)
 
-# difference:
-dift = TGr[[2]] - TGr[[1]]
+# Check
+dif_check <- en_first - EN[[1]]
+dif_check
+plot(dif_check)
 
-cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
-plot(TGr, col=cl)
+# first and last data
+par(mfrow=c(1,2))
+plot(en[[1]], col=cl)
+plot(en[[13]], col=cl)
 
+# Let's make the difference 
+difen = en[[1]] - en[[13]]
+cldif <- colorRampPalette(c('blue','white','red'))(100) 
+plot(difen, col=cldif)
 
-
-
-
-
+# plotRGB of three files together
+plotRGB(en, 1, 7, 13, stretch="lin")
+plotRGB(en, 1, 7, 13, stretch="hist")
 
 
 
