@@ -51,15 +51,15 @@ plot(en_first, col=cl)
 # Let's import the whole set
 rlist <- list.files(pattern="EN")
 import <- lapply(rlist, raster)
-EN <-stack(import)
+en <-stack(import)
 
-plot(EN, col=cl)
+plot(en, col=cl)
 par(mfrow=c(1,2))
 plot(en_first, col=cl)
 plot(en[[1]], col=cl)
 
 # Check
-dif_check <- en_first - EN[[1]]
+dif_check <- en_first - en[[1]]
 dif_check
 plot(dif_check)
 
