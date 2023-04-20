@@ -50,14 +50,22 @@ singlenr <- getValues(gcc)
 # 2 Classify
 kcluster <- kmeans(singlenr, centers = 3)
 
+# 3. Set values
+gcclass <- setValues(gcc[[1]], kcluster$cluster) # assign new values to a raster object
+gcclass
 
+plot(gcclass)
 
+# class 1: volcanic rocks
+# class 2: sandstone
+# class 3: conglomerates
 
+frequencies <- freq(gcclass)
 
+total <- ncell(gcclass)
 
-
-
-
+percentages <- frequencies * 100 / total
+percentages
 
 
 
