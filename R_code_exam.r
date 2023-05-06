@@ -21,23 +21,47 @@ library(ggplot2)   # for creating graphs
 library(patchwork) # combine separate ggplots into the same graph
 
 #### 1. Preparation of spatial data through different Sentinel-2 bands stacking ####
+### First of all I cropped Sentinel-2 free images, avaiable on copernicus portal, using Qgis
+# to focus on Almendra Reservoir area and saved the single bands of interest per year. 
 
-# 2021 data
+## 2021 data
+
+# Import red, green, blue and nir bands and stack them in a single object 
+
 data21 <- list.files(pattern="_21")
-data21
-import21 <- lapply(data21,raster)
-import21
+import21 <- lapply(data21, raster)
 al21 <- stack(import21)
 
-# 2022 data
+# Let's see the avaiable informations
+al21
+
+#class      : RasterStack 
+#dimensions : 2325, 2363, 5493975, 4  (nrow, ncol, ncell, nlayers)
+#resolution : 10, 10  (x, y)
+#extent     : 718350, 741980, 4558760, 4582010  (xmin, xmax, ymin, ymax)
+#crs        : +proj=utm +zone=29 +datum=WGS84 +units=m +no_defs 
+#names      : B02_21, B03_21, B04_21, B08_21 
+
+
+## 2022 data
+
+# Import red, green, blue and nir bands and stack them in a single object 
+
 data22 <- list.files(pattern="_22")
-data22
-import22 <- lapply(data22,raster)
-import22
+import22 <- lapply(data22, raster)
 al22 <- stack(import22)
 
+# Let's see the avaiable informations
+al22
 
-#let's see the avaiable informations
+#class      : RasterStack 
+#dimensions : 2325, 2363, 5493975, 4  (nrow, ncol, ncell, nlayers)
+#resolution : 10, 10  (x, y)
+#extent     : 718350, 741980, 4558760, 4582010  (xmin, xmax, ymin, ymax)
+#crs        : +proj=utm +zone=29 +datum=WGS84 +units=m +no_defs 
+#names      : B2_22, B3_22, B4_22, B8_22 
+
+
 
 # plotting the images with a chosen color palette to have a first look 
 cl <- colorRampPalette(c("#FFFFCC","#C7E9B4","#7FCDBB","#40B6C4","#2C7FB8" ,"#253494")) (100)
