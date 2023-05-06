@@ -3,7 +3,7 @@
 # Almendra reservoir capacity. On top of that, since drought is also likely to impact on vegetation health, I tried 
 # also to assess its effect on the land cover surrounding the lake.  
 
-# Data from: https://scihub.copernicus.eu/dhus/#/home
+# Data from: https://scihub.copernicus.eu/dhus/#/home 
 # Project key points:
 # 1. Preparation of spatial data through Qgis and different Sentinel-2 bands stacking 
 # 2. Semiquantitative calculation of the water surface loss using unsupervised classification
@@ -22,6 +22,19 @@ library(patchwork) # combine separate ggplots into the same graph
 
 #### 1. Preparation of spatial data through different Sentinel-2 bands stacking ####
 
+# 2021 data
+data21 <- list.files(pattern="_21")
+data21
+import21 <- lapply(data21,raster)
+import21
+al21 <- stack(import21)
+
+# 2022 data
+data22 <- list.files(pattern="_22")
+data22
+import22 <- lapply(data22,raster)
+import22
+al22 <- stack(import22)
 
 
 #let's see the avaiable informations
