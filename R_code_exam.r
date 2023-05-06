@@ -20,9 +20,11 @@ library(raster)    # analysis and modeling of spatial data
 library(ggplot2)   # for creating graphs
 library(patchwork) # combine separate ggplots into the same graph
 
+
 #### 1. Preparation of spatial data through different Sentinel-2 bands stacking ####
+
 ### First of all I cropped Sentinel-2 free images, avaiable on copernicus portal, using Qgis
-# to focus on Almendra Reservoir area and saved the single bands of interest per year. 
+# to focus on Almendra Reservoir area and saved the single bands of interest per year. ####
 
 ## 2021 data
 
@@ -61,24 +63,112 @@ al22
 #crs        : +proj=utm +zone=29 +datum=WGS84 +units=m +no_defs 
 #names      : B2_22, B3_22, B4_22, B8_22 
 
+# Let's see the results in natural colours with plotRGB 
 
+plotRGB(al21, 3, 2, 1, stretch="lin")
+plotRGB(al22, 3, 2, 1, stretch="lin")
 
-# plotting the images with a chosen color palette to have a first look 
-cl <- colorRampPalette(c("#FFFFCC","#C7E9B4","#7FCDBB","#40B6C4","#2C7FB8" ,"#253494")) (100)
-plot(TP1987, col=cl, main="1987")
-plot(TP2021, col=cl, main="2021")
-# to close the window
+# Create the images for the following classification (I chose nir, red and green 
+# in place of natural colours since those bands helped to differentiate classes) 
+
+plotRGB(al21, 4, 3, 2, stretch="lin")
+plotRGB(al22, 4, 3, 2, stretch="lin")
+
+# Saving images
+
+jpeg("lake21.jpg", 900, 900)
+plotRGB(al21, 4, 3, 2, stretch="lin")
 dev.off()
 
-# save plots
-jpeg("P1999_peyto.jpg", 900, 900)
-plot(P1999, col=cl)
+jpeg("lake22.jpg", 900, 900)
+plotRGB(al22, 4, 3, 2, stretch="lin")
 dev.off()
 
-jpeg("P2021_peyto.jpg", 900, 900)
-plot(P2021, col=cl, main="Peyto glacier 2021")
-dev.off()
 
+##### 2. Semiquantitative calculation of the water surface loss using unsupervised classification #####
+
+## 2021 data
+# Import the created data 
+
+l21 <- brick("lake21.jpg")
+l22 <- brick("lake22.jpg")
+
+# 1. Get all the single values
+singlenr1 <- getValues(l21)
+singlenr1
+
+# 2. Classify
+kcluster1 <- kmeans(singlenr1, centers = 5)
+kcluster1
+
+# 3. Recreating an image
+l21class <- setValues(l21[[1]], kcluster1$cluster)
+
+## 2022 data
+
+# 1. Get all the single values
+singlenr2 <- getValues(l22)
+singlenr2
+
+# 2. Classify
+kcluster2 <- kmeans(singlenr2, centers = 5)
+kcluster2
+
+# 3. Recreating an image
+l22class <- setValues(l22[[1]], kcluster2$cluster)
+
+# Choosing a colorRampPalette for an optimal show off of the classes
+cl <- colorRampPalette(c("cornsilk", "aquamarine4", "burlywood", "darkolivegreen3", "chocolate")) (100)
+
+# Multiframe 
+par(mfrow=c(1,2))# add the plot to the pdf
+plot(l21class, col=cl, main="Year 2021")
+plot(l22class, col=cl, main="Year 2022") 
+
+
+
+# -----Class percentages
+frequencies1 <- freq(l21class)
+tot1 = ncell(l21class)
+percentages1 = frequencies1 * 100 /  tot1
+
+# 22
+frequencies2 <- freq(l22class)
+tot2 = ncell(l22class)
+percentages2 = frequencies2 * 100 /  tot2
+percentages1
+percentages2
+
+#--- final table
+cover <- c("Water", "Sand", "Antropic", "Agriculture and grass", "Forest")
+percent2021 <- c(6.99, 5.01, 10.17, 33.59, 44.23 )
+percent2022 <- c(4.37, 5.52, 10.94, 33.61, 45.54 )
+
+Table1 <- data.frame(cover,percent2021, percent2022)
+View(Table1) # to see it as a real table
+
+ggplot(Table1, aes(x=cover, y=percent2021, color=cover)) + geom_bar(stat="identity", fill="white")
+
+ggplot(Table1, aes(x=cover, y=percent2022, color=cover)) + geom_bar(stat="identity", fill="white")
+
+p1 <- ggplot(Table1, aes(x=cover, y=percent2021, color=cover)) + geom_bar(stat="identity", fill="white") +
+  ggtitle(" Year 2021")
+
+p2 <- ggplot(Table1, aes(x=cover, y=percent2022, color=cover)) + geom_bar(stat="identity", fill="white")+
+  ggtitle(" Year 2022")
+p1+p2
+
+# Approximative calculation of water surface lost in km2
+
+area21 =  (percent2021[1]*tot1*100)/10^8
+area22 =  (percent2022[1]*tot1*100)/10^8
+area_lost = area21 - area22
+
+data <- c("area21", "area22", "area_lost")
+calculated_km2<- c(6.92709, 4.33067, 2.59642)
+
+Table2 <- data.frame(data,calculated_km2)
+View(Table2) 
 # multiframe of the images to visualize them both in the same plot 
 
 cl <- colorRampPalette(c("#FFFFCC","#C7E9B4","#7FCDBB","#40B6C4","#2C7FB8" ,"#253494")) (100)
