@@ -10,12 +10,11 @@
 # 3. Qualitative evaluation of drought impact on vegetation health through NDVI time series analysis 
  
 ## First things first
-# Let's set the working directory
 
+# Let's set the working directory
 setwd("C:/lab/telerilevamento_esame")
 
 # Call all the packages needed for the analysis
-
 library(raster)    # analysis and modeling of spatial data
 library(ggplot2)   # for creating graphs
 library(patchwork) # combine separate ggplots into the same graph
@@ -64,18 +63,15 @@ al22
 #names      : B2_22, B3_22, B4_22, B8_22 
 
 # Let's see the results in natural colours with plotRGB 
-
 plotRGB(al21, 3, 2, 1, stretch="lin")
 plotRGB(al22, 3, 2, 1, stretch="lin")
 
 # Create the images for the following classification (I chose nir, red and green 
 # in place of natural colours since those bands helped to differentiate classes) 
-
 plotRGB(al21, 4, 3, 2, stretch="lin")
 plotRGB(al22, 4, 3, 2, stretch="lin")
 
 # Saving images
-
 jpeg("lake21.jpg", 900, 900)
 plotRGB(al21, 4, 3, 2, stretch="lin")
 dev.off()
@@ -88,8 +84,8 @@ dev.off()
 ##### 2. Semiquantitative calculation of the water surface loss using unsupervised classification #####
 
 ## 2021 data
-# Import the created data 
 
+# Import the created data 
 l21 <- brick("lake21.jpg")
 l22 <- brick("lake22.jpg")
 
@@ -120,8 +116,8 @@ l22class <- setValues(l22[[1]], kcluster2$cluster)
 # Choosing a colorRampPalette for an optimal show off of the classes
 cl <- colorRampPalette(c("cornsilk", "aquamarine4", "burlywood", "darkolivegreen3", "chocolate")) (100)
 
-# Multiframe 
-par(mfrow=c(1,2))# add the plot to the pdf
+# Plotting several images in a Multiframe 
+par(mfrow=c(1,2))
 plot(l21class, col=cl, main="Year 2021")
 plot(l22class, col=cl, main="Year 2022") 
 
