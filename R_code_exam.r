@@ -130,26 +130,16 @@ l22class <- setValues(l22[[1]], kcluster2$cluster)
 # Choosing a colorRampPalette for an optimal show off of the classes
 cl <- colorRampPalette(c("cornsilk", "aquamarine4", "burlywood", "darkolivegreen3", "chocolate")) (100)
 
-# Multiframe
+# Multiframe plot
 par(mfrow=c(1,2))
 plot(l21class, col=cl, main="Year 2021")
 plot(l22class, col=cl, main="Year 2022") 
 
-g1 <- ggRGB (TP1987, r =1, g = 2, b = 3, stretch = "lin")
-
-g2 <- ggRGB (TP2021, r =1, g = 2, b = 3, stretch = "lin")
-
-# plot both in the same page 
-g1+g2
-dev.off()
-
-# save plot
-jpeg("g1+g2.jpg", 900, 900)
-plot(g1+g2, col=cl, main="RGB")
-dev.off()
-
-# Saving the image
-jpeg("l21vsl22.jpg", 900, 900)
+# Saving plot
+jpeg("class21vs22.jpg", 1400, 1400)
+par(mfrow=c(1,2))
+plot(l21class, col=cl, main="Year 2021")
+plot(l22class, col=cl, main="Year 2022") 
 dev.off()
 
 ## Let's calculate the number of pixels associated to each class ##
