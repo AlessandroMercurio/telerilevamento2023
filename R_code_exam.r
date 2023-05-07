@@ -195,7 +195,7 @@ p1+p2
 
 # save plot
 jpeg("p1+p2.jpg", 1200, 680)
-p1 +p2
+p1 + p2
 dev.off()
 
 ## Approximative calculation of water surface lost in km2 
