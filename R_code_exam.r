@@ -193,6 +193,11 @@ p2 <- ggplot(Table1, aes(x=cover, y=percent2022, color=cover)) + geom_bar(stat="
 
 p1+p2
 
+# save plot
+jpeg("p1+p2.jpg", 1100, 900)
+p1 +p2
+dev.off()
+
 ## Approximative calculation of water surface lost in km2 
 # (the 10x10 resolution isn't ideal to do a precise extimation) ##
 
