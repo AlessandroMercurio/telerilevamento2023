@@ -173,7 +173,7 @@ percentages1
 
 ## Create a dataframe to display the results in a Table ##
 
-cover <- c("Water", "Sand", "Antropic", "Agriculture and grass", "Forest")
+cover <- c("Water", "Sand", "Antropic", "Agriculture/grass", "Forest")
 percent2021 <- c(6.99, 5.01, 10.17, 33.59, 44.23 )
 percent2022 <- c(4.37, 5.52, 10.94, 33.61, 45.54 )
 Table1 <- data.frame(cover,percent2021, percent2022)
@@ -194,7 +194,7 @@ p2 <- ggplot(Table1, aes(x=cover, y=percent2022, color=cover)) + geom_bar(stat="
 p1+p2
 
 # save plot
-jpeg("p1+p2.jpg", 1100, 900)
+jpeg("p1+p2.jpg", 1200, 680)
 p1 +p2
 dev.off()
 
