@@ -68,6 +68,15 @@ al22
 plotRGB(al21, 3, 2, 1, stretch="lin")
 plotRGB(al22, 3, 2, 1, stretch="lin")
 
+# Saving images
+jpeg("RGB21.jpg", 900, 900)
+plotRGB(al21, 3, 2, 1, stretch="lin")
+dev.off()
+
+jpeg("RGB22.jpg", 900, 900)
+plotRGB(al22, 3, 2, 1, stretch="lin")
+dev.off()
+
 # Create the images for the following classification (I chose nir, red and green 
 # in place of natural colours since those bands helped to differentiate classes) 
 plotRGB(al21, 4, 3, 2, stretch="lin")
