@@ -20,7 +20,9 @@ library(ggplot2)   # for creating graphs
 library(patchwork) # combine separate ggplots into the same graph
 
 
+#######                                                                     ########
 #### 1. Preparation of spatial data through different Sentinel-2 bands stacking ####
+#######                                                                     ########
 
 ### First of all I cropped Sentinel-2 free images, avaiable on copernicus portal, using Qgis
 # to focus on Almendra Reservoir area and saved the single bands of interest per year. ####
@@ -80,10 +82,11 @@ jpeg("lake22.jpg", 900, 900)
 plotRGB(al22, 4, 3, 2, stretch="lin")
 dev.off()
 
-
+########                                                                                       ########
 ##### 2. Semiquantitative calculation of the water surface loss using unsupervised classification #####
+########                                                                                       ########
 
-## 2021 data
+## 2021 data ##
 
 # Import the created data 
 l21 <- brick("lake21.jpg")
@@ -100,7 +103,7 @@ kcluster1
 # 3. Recreating an image
 l21class <- setValues(l21[[1]], kcluster1$cluster)
 
-## 2022 data
+## 2022 data ##
 
 # 1. Get all the single values
 singlenr2 <- getValues(l22)
@@ -113,15 +116,15 @@ kcluster2
 # 3. Recreating an image
 l22class <- setValues(l22[[1]], kcluster2$cluster)
 
+## Plotting several images in a Multiframe
+
 # Choosing a colorRampPalette for an optimal show off of the classes
 cl <- colorRampPalette(c("cornsilk", "aquamarine4", "burlywood", "darkolivegreen3", "chocolate")) (100)
 
-# Plotting several images in a Multiframe with ggplot2 package
-
+# Multiframe
 par(mfrow=c(1,2))
 plot(l21class, col=cl, main="Year 2021")
 plot(l22class, col=cl, main="Year 2022") 
-
 
 g1 <- ggRGB (TP1987, r =1, g = 2, b = 3, stretch = "lin")
 
@@ -136,32 +139,48 @@ jpeg("g1+g2.jpg", 900, 900)
 plot(g1+g2, col=cl, main="RGB")
 dev.off()
 
-
 # Saving the image
 jpeg("l21vsl22.jpg", 900, 900)
-
 dev.off()
 
+## Let's calculate the number of pixels associated to each class ##
 
-# -----Class percentages
+# 2021
 frequencies1 <- freq(l21class)
 tot1 = ncell(l21class)
-percentages1 = frequencies1 * 100 /  tot1
+percentages1 = frequencies1 * 100 /  tot1 # more user friendly output
 
-# 22
+# 2022
 frequencies2 <- freq(l22class)
 tot2 = ncell(l22class)
-percentages2 = frequencies2 * 100 /  tot2
-percentages1
-percentages2
+percentages2 = frequencies2 * 100 /  tot2 # more user friendly output
 
-#--- final table
+# Call percentages to see the results
+
+percentages1
+            value     count
+[1,] 0.0001009082 44.230373 # forest
+[2,] 0.0002018163  6.991927 # water
+[3,] 0.0003027245  5.019173 # sand
+[4,] 0.0004036327 33.592936 # agriculture and grass
+[5,] 0.0005045409 10.165590 # antropic
+> percentages2
+            value    count
+[1,] 0.0001008074 45.54749 # forest
+[2,] 0.0002016147  4.37383 # water
+[3,] 0.0003024221  5.52253 # sand
+[4,] 0.0004032295 33.61129 # agriculture and grass
+[5,] 0.0005040368 10.94486 # antropic
+
+## Create a dataframe to display the results in a Table ##
+
 cover <- c("Water", "Sand", "Antropic", "Agriculture and grass", "Forest")
 percent2021 <- c(6.99, 5.01, 10.17, 33.59, 44.23 )
 percent2022 <- c(4.37, 5.52, 10.94, 33.61, 45.54 )
-
 Table1 <- data.frame(cover,percent2021, percent2022)
-View(Table1) # to see it as a real table
+View(Table1) # to display it as a real table
+
+## Create histograms with ggplot package to clearly see changes between 2021 and 2022 ##
 
 ggplot(Table1, aes(x=cover, y=percent2021, color=cover)) + geom_bar(stat="identity", fill="white")
 
@@ -172,21 +191,29 @@ p1 <- ggplot(Table1, aes(x=cover, y=percent2021, color=cover)) + geom_bar(stat="
 
 p2 <- ggplot(Table1, aes(x=cover, y=percent2022, color=cover)) + geom_bar(stat="identity", fill="white")+
   ggtitle(" Year 2022")
+
 p1+p2
 
-# Approximative calculation of water surface lost in km2
+## Approximative calculation of water surface lost in km2 
+# (the 10x10 resolution isn't ideal to do a precise extimation) ##
 
-area21 =  (percent2021[1]*tot1*100)/10^8
+area21 =  (percent2021[1]*tot1*100)/10^8 
 area22 =  (percent2022[1]*tot1*100)/10^8
 area_lost = area21 - area22
 
+# Create a dataframe and a table to display results
+
 data <- c("area21", "area22", "area_lost")
 calculated_km2<- c(6.92709, 4.33067, 2.59642)
-
 Table2 <- data.frame(data,calculated_km2)
 View(Table2) 
 
-#DVI 
+
+########                                                                                              ########
+##### 3. Qualitative evaluation of drought impact on vegetation health through NDVI time series analysis #####
+########                                                                                              ########
+
+# DVI 
 
 dvi21 = al21[[4]] - al21[[3]]
 dvi22 = al22[[4]] - al22[[3]]
@@ -196,7 +223,7 @@ par(mfrow=c(1,2))
 plot(dvi21, col=cl)
 plot(dvi22, col=cl)
 
-#NDVI
+# NDVI
 ndvi21 = dvi21/(al21[[4]]+ al21[[3]])
 ndvi22 = dvi22/(al22[[4]]+ al22[[3]])
 
