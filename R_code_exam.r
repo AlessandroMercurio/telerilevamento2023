@@ -246,26 +246,6 @@ difndvi = ndvi21 - ndvi22
 plot(difndvi, col=cld)
 
 
-nir8A <- raster("B8A21.tif")
- swir<- raster("B12.tif")
- alm21 <- stack(nir8A, swir)
- View(alm21)
- View(alm21)
- alm21
 
 
- ndmi21 = alm21[[1]] - alm21[[2]]/alm21[[1]] + alm21[[2]]
- plot(ndmi21)
- ndmi21 = (alm21[[1]] - alm21[[2]])/(alm21[[1]] + alm21[[2]])
- ndmi21
-
-
- plot(ndmi21)
- nir8A22 <- raster("B8A22.tif")
- swir22<- raster("B12_22.tif")
- alm22 <- stack(nir8A22, swir22)
- ndmi22 = (alm22[[1]] - alm22[[2]])/(alm22[[1]] + alm22[[2]])
- ndmi22
-
- plot(ndmi22)
 
