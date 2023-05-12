@@ -29,3 +29,7 @@ ggplot() +
 geom_raster(scd.crop, mapping=aes(x=x, y=y, fill=Surface.Soil.Moisture))+
 ggtitle("Soil Moisture cropped")+
 scale_fill_viridis(option="cividis")
+
+# head() mostra solo i primi elementi 
+# names() mostra il nome di un dataset
+# source() per caricare uno script da un file di testo
