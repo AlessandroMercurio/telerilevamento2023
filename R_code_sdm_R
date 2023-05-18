@@ -49,3 +49,40 @@ points(presences, pch=19)
 
 plot(preds$vegetation, col=cl)
 points(presences, pch=19)
+
+# Let's create a model to predict species distribution in unsampled points
+
+# set the data for the sdm
+datasdm <- sdmData(train=species, predictors=preds)
+
+# creation of the model
+m1 <- sdm(Occurrence ~ elevation + precipitation + temperature + vegetation, data=datasdm, methods = "glm")
+
+# make the raster output layer (predicts, using the model, the distribution for the entire area)
+p1 <- predict(m1, newdata=preds)
+
+# plot the output ( the scale indicates the probability)
+plot(p1, col=cl)
+points(species[species$Occurrence == 1,], pch=19)
+
+# add to the stack to plot all the predictors together
+s1 <- stack(preds,p1)
+plot(s1, col=cl)
+
+# Do you want to change names in the plot of the stack?
+# Here your are!:
+# choose a vector of names for the stack, looking at the previous graph, qhich are:
+names(s1) <- c('elevation', 'precipitation', 'temperature', 'vegetation', 'model')
+# and then replot!:
+plot(s1, col=cl)
+
+
+
+
+
+
+
+
+
+
+
