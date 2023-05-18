@@ -246,6 +246,66 @@ difndvi = ndvi21 - ndvi22
 plot(difndvi, col=cld)
 
 
+#QUESTO E’ IL MODO PER UNIFICARE I VALORI DEI PLOT , IN QUESTA MANIERA AVREMO 2 LEGENDE CON VALORI UGUALI E CONFRONTABILI, OVVIAMENTE CAMBIERA’ IL PLOT PERCHE’ DOVRA’ GESTIRE VALORI LEGGERMENTE DIVERSI
 
+ 
+
+global_min <- min(minValue(ndvi21), minValue(ndvi22)) #CREIAMO UNA VARIABILE CON I VALORI MINIMI DEI PLOT
+
+global_max <- max(maxValue(ndvi21), maxValue(ndvi22)) #CREIAMO UNA VARIABILE CON I VALORI MASSIMI DEI PLOT
+
+ 
+
+# Imposta i parametri grafici
+
+par(mfrow=c(1,2))
+
+ 
+
+# Disegna le due immagini con gli stessi limiti di colore
+
+plot(ndvi21, col=cls, zlim=c(global_min, global_max))
+
+plot(ndvi22, col=cls, zlim=c(global_min, global_max))
+
+ 
+
+ 
+
+ 
+
+#QUESTO E’ UNO SCRIPT PiU’ COMPLESSO CHE VA A DISEGNARE E RIORDINARE TUTTI GLI ELEMENTI GRAFICI
+
+ 
+
+# Calcola i limiti globali
+
+global_min <- min(minValue(ndvi21), minValue(ndvi22))
+
+global_max <- max(maxValue(ndvi21), maxValue(ndvi22))
+
+ 
+
+# Imposta i parametri grafici per creare spazio per la legenda a destra
+
+par(mfrow=c(1,2), oma=c(0, 0, 0, 5), mar=c(5, 4, 4, 5) + 0.9)
+
+ 
+
+# Disegna le due immagini senza legenda
+
+plot(ndvi21, col=cls, zlim=c(global_min, global_max), legend=FALSE, main="NDVI 2021")
+
+plot(ndvi22, col=cls, zlim=c(global_min, global_max), legend=FALSE, main="NDVI 2022")
+
+ 
+
+# Aggiungi una legenda comune sul lato destro
+
+par(mfrow=c(1, 1), mar=c(5, 0, 4, 2) + 0.1)
+
+image.plot(zlim=c(global_min, global_max), col=cls, legend.only=TRUE)
+
+ 
 
 
