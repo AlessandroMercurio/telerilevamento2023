@@ -5,4 +5,23 @@
 
 library(sdm)
 library(raster) # predictors
-library(rgdal) # species
+library(rgdal) # species 
+
+# data already in the sdm package in the section "external" created with the installation
+file <- system.file("external/species.shp", package="sdm")   # this is the path to reach the file 
+species <- shapefile(file)                                   # calling the shape from the file path
+species
+
+# plot
+plot(species, pch=19)  # pch to change the symbol into dots
+
+# let's create a sub-dataset including only the present points (value=1) from species dataset 
+presences <- species[species$occurrence == 1,] # "," closes this command
+absences <- species[species$occurrence == 0,] # "," closes this command
+
+# plot together pres and abs
+plot(presences, col="blue", pch=19)
+points(absences, col="red", pch=19)
+
+# predictors: look at the path (predictors= environmental variables)
+path <- system.file("external", package="sdm")
