@@ -1,1 +1,8 @@
 # R code for species distribution modeling
+
+# install.packages("sdm")
+# install.packages("rgdal", dependencies=T)
+
+library(sdm)
+library(raster) # predictors
+library(rgdal) # species
