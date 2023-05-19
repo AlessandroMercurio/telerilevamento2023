@@ -310,5 +310,6 @@ par(mfrow=c(1, 1), mar=c(5, 0, 4, 2) + 0.1)
 image.plot(zlim=c(global_min, global_max), col=cls, legend.only=TRUE)
 
  
+ 
 
 
