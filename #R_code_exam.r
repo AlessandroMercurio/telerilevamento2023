@@ -221,19 +221,12 @@ View(Table2)
 ## DVI (Difference Vegetation Index)
 # Comparing nir and red bands (almost completely reflected and absorbed by healthy plants respectively) 
 # allows to evaluate vegetation health changes by, for example, idraulic stress
-
+# Let's calculate it to then calculate the ndvi index
 # band 4 = nir
 # band 3 = red
 
 dvi21 = al21[[4]] - al21[[3]]
 dvi22 = al22[[4]] - al22[[3]]
-
-# define a colorRampPalette to display the multiple images plot
-cl <- colorRampPalette(c('darkblue', 'yellow', 'red', 'black')) (100)
-par(mfrow=c(1,2))
-plot(dvi21, col=cl)
-plot(dvi22, col=cl)
-
 
 ## NDVI (Normalized Difference Vegetation Index)
 # It is a standardize index that can be used both with 8 and 16 bit images
@@ -247,14 +240,13 @@ plot(ndvi21, col=cl)
 plot(ndvi22, col=cl)
 dev.off()
 
-# difference of dvi and ndvi between 2021 and 2022 (multitemporal analysis)
+# difference of ndvi between 2021 and 2022 (multitemporal analysis)
 
-difdvi = dvi21 - dvi22
 cld <- colorRampPalette(c('blue', 'white', 'red')) (100)
-plot(difdvi, col=cld)
-
 difndvi = ndvi21 - ndvi22
 plot(difndvi, col=cld)
+
+
 
 
 #QUESTO E’ IL MODO PER UNIFICARE I VALORI DEI PLOT , IN QUESTA MANIERA AVREMO 2 LEGENDE CON VALORI UGUALI E CONFRONTABILI, OVVIAMENTE CAMBIERA’ IL PLOT PERCHE’ DOVRA’ GESTIRE VALORI LEGGERMENTE DIVERSI
