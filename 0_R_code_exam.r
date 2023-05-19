@@ -69,9 +69,9 @@ plotRGB(al21, 3, 2, 1, stretch="lin")
 plotRGB(al22, 3, 2, 1, stretch="lin")
 
 # Saving images
-jpeg("RGB21.jpg", 900, 900)
+jpeg("RGB21.jpg", 900, 900)  # define extenction and resolution 
 plotRGB(al21, 3, 2, 1, stretch="lin")
-dev.off()
+dev.off()                    # it closes the plot box
 
 jpeg("RGB22.jpg", 900, 900)
 plotRGB(al22, 3, 2, 1, stretch="lin")
@@ -135,14 +135,14 @@ par(mfrow=c(1,2))
 plot(l21class, col=cl, main="Year 2021")
 plot(l22class, col=cl, main="Year 2022") 
 
-# Saving plot
+# Saving multiframe plot
 jpeg("class21vs22.jpg", 1400, 1400)
 par(mfrow=c(1,2))
 plot(l21class, col=cl, main="Year 2021")
 plot(l22class, col=cl, main="Year 2022") 
 dev.off()
 
-## Let's calculate the number of pixels associated to each class ##
+## Let's calculate the number of pixels associated to each class to evaluate the covered area ##
 
 # 2021
 frequencies1 <- freq(l21class)
@@ -155,7 +155,7 @@ tot2 = ncell(l22class)
 percentages2 = frequencies2 * 100 /  tot2 # more user friendly output
 
 # Call percentages to see the results
-
+# the classes were identified through compairing the two images and using a 
 percentages1
             value     count
 [1,] 0.0001009082 44.230373 # forest
@@ -173,7 +173,7 @@ percentages1
 
 ## Create a dataframe to display the results in a Table ##
 
-cover <- c("Water", "Sand", "Antropic", "Agriculture/grass", "Forest")
+cover <- c("Water", "Sand", "Antropic", "Agriculture/grass", "Forest")  
 percent2021 <- c(6.99, 5.01, 10.17, 33.59, 44.23 )
 percent2022 <- c(4.37, 5.52, 10.94, 33.61, 45.54 )
 Table1 <- data.frame(cover,percent2021, percent2022)
@@ -217,20 +217,30 @@ View(Table2)
 ##### 3. Qualitative evaluation of drought impact on vegetation health through NDVI time series analysis #####
 ########                                                                                              ########
 
-# DVI 
+## DVI (Difference Vegetation Index)
+# Comparing nir and red bands (almost completely reflected and absorbed by healthy plants respectively) 
+# allows to evaluate vegetation health changes by, for example, idraulic stress
+
+# band 4 = nir
+# band 3 = red
 
 dvi21 = al21[[4]] - al21[[3]]
 dvi22 = al22[[4]] - al22[[3]]
 
+# define a colorRampPalette to display the images multiframe 
 cl <- colorRampPalette(c('darkblue', 'yellow', 'red', 'black')) (100)
 par(mfrow=c(1,2))
 plot(dvi21, col=cl)
 plot(dvi22, col=cl)
 
-# NDVI
+
+## NDVI (Normalized Difference Vegetation Index)
+# It is a standardize index that can be used both with 8 and 16 bit images
+
 ndvi21 = dvi21/(al21[[4]]+ al21[[3]])
 ndvi22 = dvi22/(al22[[4]]+ al22[[3]])
 
+# plotting the two images in a multiframe
 par(mfrow=c(1,2))
 plot(ndvi21, col=cl)
 plot(ndvi22, col=cl)
