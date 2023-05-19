@@ -130,12 +130,12 @@ l22class <- setValues(l22[[1]], kcluster2$cluster)
 # Choosing a colorRampPalette for an optimal show off of the classes
 cl <- colorRampPalette(c("cornsilk", "aquamarine4", "burlywood", "darkolivegreen3", "chocolate")) (100)
 
-# Multiframe plot
+# Multiframe 
 par(mfrow=c(1,2))
 plot(l21class, col=cl, main="Year 2021")
 plot(l22class, col=cl, main="Year 2022") 
 
-# Saving multiframe plot
+# Saving multiframe 
 jpeg("class21vs22.jpg", 1400, 1400)
 par(mfrow=c(1,2))
 plot(l21class, col=cl, main="Year 2021")
@@ -228,7 +228,7 @@ View(Table2)
 dvi21 = al21[[4]] - al21[[3]]
 dvi22 = al22[[4]] - al22[[3]]
 
-# define a colorRampPalette to display the images multiframe 
+# define a colorRampPalette to display the multiple images plot
 cl <- colorRampPalette(c('darkblue', 'yellow', 'red', 'black')) (100)
 par(mfrow=c(1,2))
 plot(dvi21, col=cl)
@@ -241,7 +241,7 @@ plot(dvi22, col=cl)
 ndvi21 = dvi21/(al21[[4]]+ al21[[3]])
 ndvi22 = dvi22/(al22[[4]]+ al22[[3]])
 
-# plotting the two images in a multiframe
+# plotting the two images in the same plotting space
 par(mfrow=c(1,2))
 plot(ndvi21, col=cl)
 plot(ndvi22, col=cl)
