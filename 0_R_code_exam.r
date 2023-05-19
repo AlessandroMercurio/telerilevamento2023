@@ -125,7 +125,7 @@ kcluster2
 # 3. Recreating an image
 l22class <- setValues(l22[[1]], kcluster2$cluster)
 
-## Plotting several images in a Multiframe
+## Plotting several images in the same plotting space
 
 # Choosing a colorRampPalette for an optimal show off of the classes
 cl <- colorRampPalette(c("cornsilk", "aquamarine4", "burlywood", "darkolivegreen3", "chocolate")) (100)
@@ -154,8 +154,9 @@ frequencies2 <- freq(l22class)
 tot2 = ncell(l22class)
 percentages2 = frequencies2 * 100 /  tot2 # more user friendly output
 
-# Call percentages to see the results
-# the classes were identified through compairing the two images and using a 
+# Call percentages to see the results. Classes were identified through compairing the two images and 
+# using as a support a land cover map powered by esri (copernicus)
+
 percentages1
             value     count
 [1,] 0.0001009082 44.230373 # forest
@@ -199,7 +200,7 @@ p1 + p2
 dev.off()
 
 ## Approximative calculation of water surface lost in km2 
-# (the 10x10 resolution isn't ideal to do a precise extimation) ##
+# (note that the 10x10 resolution isn't ideal to do a precise extimation) ##
 
 area21 =  (percent2021[1]*tot1*100)/10^8 
 area22 =  (percent2022[1]*tot1*100)/10^8
@@ -246,7 +247,7 @@ plot(ndvi21, col=cl)
 plot(ndvi22, col=cl)
 dev.off()
 
-# difference of dvi and ndvi(multitemporal analysis)
+# difference of dvi and ndvi between 2021 and 2022 (multitemporal analysis)
 
 difdvi = dvi21 - dvi22
 cld <- colorRampPalette(c('blue', 'white', 'red')) (100)
