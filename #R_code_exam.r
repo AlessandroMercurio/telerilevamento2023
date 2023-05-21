@@ -163,18 +163,18 @@ percentages1
 [2,] 0.0002018163  6.991927 # water
 [3,] 0.0003027245  5.019173 # sand
 [4,] 0.0004036327 33.592936 # agriculture and grass
-[5,] 0.0005045409 10.165590 # antropic
+[5,] 0.0005045409 10.165590 # bare soil and antropic
 > percentages2
             value    count
 [1,] 0.0001008074 45.54749 # forest
 [2,] 0.0002016147  4.37383 # water
 [3,] 0.0003024221  5.52253 # sand
 [4,] 0.0004032295 33.61129 # agriculture and grass
-[5,] 0.0005040368 10.94486 # antropic
+[5,] 0.0005040368 10.94486 # bare soil and antropic
 
 ## Create a dataframe to display the results in a Table ##
 
-cover <- c("Water", "Sand", "Antropic", "Agriculture/grass", "Forest")  
+cover <- c("Water", "Sand", "Bare soil/antropic", "Agriculture/grass", "Forest")  
 percent2021 <- c(6.99, 5.01, 10.17, 33.59, 44.23 )
 percent2022 <- c(4.37, 5.52, 10.94, 33.61, 45.54 )
 Table1 <- data.frame(cover,percent2021, percent2022)
@@ -220,7 +220,8 @@ View(Table2)
 
 ## DVI (Difference Vegetation Index)
 # Comparing nir and red bands (almost completely reflected and absorbed by healthy plants respectively) 
-# allows to evaluate vegetation health changes by, for example, idraulic stress
+# allows to evaluate vegetation health changes by, for example, nutritional or idraulic stress
+
 # Let's calculate it to then calculate the ndvi index
 # band 4 = nir
 # band 3 = red
@@ -231,8 +232,8 @@ dvi22 = al22[[4]] - al22[[3]]
 ## NDVI (Normalized Difference Vegetation Index)
 # It is a standardize index that can be used both with 8 and 16 bit images
 
-ndvi21 = dvi21/(al21[[4]]+ al21[[3]])
-ndvi22 = dvi22/(al22[[4]]+ al22[[3]])
+ndvi21 = dvi21/(al21[[4]] + al21[[3]])
+ndvi22 = dvi22/(al22[[4]] + al22[[3]])
 
 # plotting the two images in the same plotting space
 par(mfrow=c(1,2))
@@ -240,11 +241,19 @@ plot(ndvi21, col=cl)
 plot(ndvi22, col=cl)
 dev.off()
 
-# difference of ndvi between 2021 and 2022 (multitemporal analysis)
+## difference of ndvi between 2021 and 2022 (multitemporal analysis)
+# to see areas in which vegetation health changed most
 
 cld <- colorRampPalette(c('blue', 'white', 'red')) (100)
 difndvi = ndvi21 - ndvi22
 plot(difndvi, col=cld)
+
+
+
+
+
+
+
 
 
 
