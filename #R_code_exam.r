@@ -242,7 +242,7 @@ plot(ndvi22, col=cl)
 dev.off()
 
 ## difference of ndvi between 2021 and 2022 (multitemporal analysis)
-# to see areas in which vegetation health changed most
+# to see areas in which vegetation health was most affected by drought
 
 cld <- colorRampPalette(c('blue', 'white', 'red')) (100)
 difndvi = ndvi21 - ndvi22
