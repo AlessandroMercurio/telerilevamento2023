@@ -236,10 +236,19 @@ ndvi21 = dvi21/(al21[[4]] + al21[[3]])
 ndvi22 = dvi22/(al22[[4]] + al22[[3]])
 
 # plotting the two images in the same plotting space
+cls <- colorRampPalette(c('darkblue', 'yellow', 'red', 'black')) (100)
 par(mfrow=c(1,2))
-plot(ndvi21, col=cl)
-plot(ndvi22, col=cl)
+plot(ndvi21, col=cls)
+plot(ndvi22, col=cls)
 dev.off()
+
+# saving it
+jpeg("NDVI.jpg", 1400, 1400)
+par(mfrow=c(1,2))
+plot(ndvi21, col=cls, main="NDVI 2021")
+plot(ndvi22, col=cls, main="NDVI 2022") 
+dev.off()
+
 
 ## difference of ndvi between 2021 and 2022 (multitemporal analysis)
 # to see areas in which vegetation health was most affected by drought
@@ -248,11 +257,12 @@ cld <- colorRampPalette(c('blue', 'white', 'red')) (100)
 difndvi = ndvi21 - ndvi22
 plot(difndvi, col=cld)
 
+# saving it
+jpeg("difndvi.jpg", 900, 900)
+plot(difndvi, col=cld, main="NDVI difference")
+dev.off()
 
-
-
-
-
+### Thanks for the attention ###
 
 
 
