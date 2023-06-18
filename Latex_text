@@ -16,7 +16,7 @@
 % items
 
 \title{This is my first LaTeX document!}
-\author{Duccio Rocchini $^1$, Alessandro Mercurio $^2$}
+\author{Duccio Rocchini $^1$, Student2 $^2$}
 
 \begin{document}
 \maketitle
