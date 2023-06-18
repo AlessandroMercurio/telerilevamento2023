@@ -9,19 +9,12 @@
 \usepackage{hyperref} # to create hyperlinks
 \usepackage{natbib} # for bibliography
 \usepackage{listings} # to insert external code into the code
-
-\documentclass[a4paper,12pt]{article}
-
-
-
-
-
 \linenumbers
-%  COLORI TESTO 
-%  items
+# COLORI TESTO
+# items
 
 \title{This is my first LaTeX document!}
-\author{Duccio Rocchini $^1$, Student2 $^2$}
+\author{Duccio Rocchini $^1$, Alessandro Mercurio $^2$}
 
 % le funzioni in latex si indicano con \ e gli argomenti vanno all'interno di parentesi graffe
 
