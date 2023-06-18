@@ -1,4 +1,5 @@
 # Create an article with Latex 
+# Functions in latex needs \ and objects into {}
 
 \documentclass[a4paper,12pt]{article} # define the tipe of document and is structure
 
@@ -10,13 +11,12 @@
 \usepackage{natbib} # for bibliography
 \usepackage{listings} # to insert external code into the code
 \linenumbers
+
 # COLORI TESTO
 # items
 
 \title{This is my first LaTeX document!}
 \author{Duccio Rocchini $^1$, Alessandro Mercurio $^2$}
-
-% le funzioni in latex si indicano con \ e gli argomenti vanno all'interno di parentesi graffe
 
 \begin{document}
 \maketitle
