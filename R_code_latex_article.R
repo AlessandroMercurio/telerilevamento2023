@@ -1,19 +1,19 @@
-# Create an article with Latex 
-# Functions in latex needs \ and objects into {}
+% Create an article with Latex 
+% Functions in latex needs \ and objects into {}
 
-\documentclass[a4paper,12pt]{article} # define the tipe of document and is structure
+\documentclass[a4paper,12pt]{article} % define the tipe of document and is structure
 
-\usepackage[utf8]{inputenc}  # for encoding
-\usepackage{graphicx} # package for graphs
-\usepackage{color} # for colors
-\usepackage{lineno} # for line numbers
-\usepackage{hyperref} # to create hyperlinks
-\usepackage{natbib} # for bibliography
-\usepackage{listings} # to insert external code into the code
+\usepackage[utf8]{inputenc}  % for encoding
+\usepackage{graphicx} % package for graphs
+\usepackage{color} % for colors
+\usepackage{lineno} % for line numbers
+\usepackage{hyperref} % to create hyperlinks
+\usepackage{natbib} % for bibliography
+\usepackage{listings} % to insert external code into the code
 \linenumbers
 
-# COLORI TESTO
-# items
+% COLORI TESTO
+% items
 
 \title{This is my first LaTeX document!}
 \author{Duccio Rocchini $^1$, Alessandro Mercurio $^2$}
