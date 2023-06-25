@@ -95,22 +95,6 @@ ggtitle("chm 2004")
  p1 + p2 + p3
 
 
-#calculate difference in CHM
-difference<-chm_2013_reseampled-chm_2004
-
-#plot the difference 
-ggplot() + 
-  geom_raster(difference, mapping =aes(x=x, y=y, fill=layer)) + 
-  scale_fill_viridis() +
-  ggtitle("difference CHM San Genesio/Jenesien")
-
-
-#save the rasters
-writeRaster(chm_2013_reseampled,"chm_2013_reseampled_San_genesio.tif")
-writeRaster(difference,"difference chm San_genesio.tif")
-
-
-
 
 
 
