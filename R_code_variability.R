@@ -1,4 +1,4 @@
-How to measure landscape variability with R
+# How to measure landscape variability with R
 
 library(raster)
 library(ggplot2)
