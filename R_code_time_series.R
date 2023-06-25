@@ -18,7 +18,7 @@ rlist
 import <- lapply(rlist,raster)
 import
 
-# this function stacks toghether the four images (similar to "par" function but creates a unique file)
+# this function stacks toghether the four images (similar to "par" function but creates a unique object)
 TGr <- stack(import)
 plot(TGr)
 
