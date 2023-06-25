@@ -1,3 +1,5 @@
+# R code to show land cover changes due to deforestation
+
 library(raster)
 library(ggplot2) # for ggplot graphs
 library(patchwork) # multiframe with ggplot2
@@ -13,6 +15,7 @@ plotRGB(defor2, 1, 2, 3, stretch="lin")
 # unsupervised classification
 
 # --------Classification of the 1992 image
+
 # 1. Get all the single values
 singlenr1 <- getValues(defor1)
 singlenr1
