@@ -10,12 +10,14 @@ library(patchwork)
 # import data
 dsm_2013 <- raster("2013Elevation_DigitalElevationModel-0.5m.tif")
 dtm_2013 <- raster("2013Elevation_DigitalTerrainModel-0.5m.tif")
-dsm_2004 <- raster()
-dtm_2004 <- raster(
+dsm_2004 <- raster("2004Elevation_DigitalElevationModel-2.5m.tif")
+dtm_2004 <- raster("2004Elevation_DigitalTerrainModel-2.5m.tif")
 
 # create the data frame for ggplot
 dsm_2013d <- as.data.frame(dsm_2013, xy=T)
 dtm_2013d <- as.data.frame(dtm_2013, xy=T)
+dsm_2004d <- as.data.frame(dsm_2004, xy=T)
+dtm_2004d <- as.data.frame(dtm_2004, xy=T)
 
 ggplot() +
 geom_raster(dsm_2013d, mapping=aes(x=x, y=y, fill=X2013Elevation_DigitalElevationModel.0.5m)) +
