@@ -40,8 +40,6 @@ ggplot() +
 geom_raster(pcid, mapping = aes(x=x, y=y, fill=PC1)) +
 scale_fill_viridis(option="viridis")
 
-# focal sd
-sd3 <- focal(pci[[1]]
 
 
 
