@@ -187,10 +187,12 @@ ggplot(Table1, aes(x=cover, y=percent2021, color=cover)) + geom_bar(stat="identi
 ggplot(Table1, aes(x=cover, y=percent2022, color=cover)) + geom_bar(stat="identity", fill="white")
 
 p1 <- ggplot(Table1, aes(x=cover, y=percent2021, color=cover)) + geom_bar(stat="identity", fill="white") +
-  ggtitle(" Year 2021")
+  ggtitle(" Year 2021") +
+  ylim(c(0,50))
 
 p2 <- ggplot(Table1, aes(x=cover, y=percent2022, color=cover)) + geom_bar(stat="identity", fill="white")+
-  ggtitle(" Year 2022")
+  ggtitle(" Year 2022") +
+  ylim(c(0,50))
 
 p1+p2
 
