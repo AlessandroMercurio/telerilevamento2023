@@ -196,7 +196,7 @@ p2 <- ggplot(Table1, aes(x=cover, y=percent2022, color=cover)) + geom_bar(stat="
 
 p1+p2
 
-# save plot
+# Save plot
 jpeg("p1+p2.jpg", 1200, 680)
 p1 + p2
 dev.off()
@@ -237,14 +237,14 @@ dvi22 = al22[[4]] - al22[[3]]
 ndvi21 = dvi21/(al21[[4]] + al21[[3]])
 ndvi22 = dvi22/(al22[[4]] + al22[[3]])
 
-# plotting the two images in the same plotting space
+# Plotting the two images in the same plotting space
 cls <- colorRampPalette(c('darkblue', 'yellow', 'red', 'black')) (100)
 par(mfrow=c(1,2))
 plot(ndvi21, col=cls)
 plot(ndvi22, col=cls)
 dev.off()
 
-# saving it
+# Saving it
 jpeg("NDVI.jpg", 1400, 1400)
 par(mfrow=c(1,2))
 plot(ndvi21, col=cls, main="NDVI 2021")
@@ -252,14 +252,14 @@ plot(ndvi22, col=cls, main="NDVI 2022")
 dev.off()
 
 
-## difference of ndvi between 2021 and 2022 (multitemporal analysis)
+## Difference of ndvi between 2021 and 2022 (multitemporal analysis)
 # to see areas in which vegetation health was most affected by drought
 
 cld <- colorRampPalette(c('blue', 'white', 'red')) (100)
 difndvi = ndvi21 - ndvi22
 plot(difndvi, col=cld)
 
-# saving it
+# Saving it
 jpeg("difndvi.jpg", 900, 900)
 plot(difndvi, col=cld, main="NDVI difference")
 dev.off()
