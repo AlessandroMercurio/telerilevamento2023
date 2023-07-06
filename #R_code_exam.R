@@ -64,7 +64,7 @@ al22
 #crs        : +proj=utm +zone=29 +datum=WGS84 +units=m +no_defs 
 #names      : B2_22, B3_22, B4_22, B8_22 
 
-# Let's see the results in natural colours with plotRGB 
+# Let's see the results in natural colours with plotRGB for both Years
 plotRGB(al21, 3, 2, 1, stretch="lin")
 plotRGB(al22, 3, 2, 1, stretch="lin")
 
@@ -77,8 +77,8 @@ jpeg("RGB22.jpg", 900, 900)
 plotRGB(al22, 3, 2, 1, stretch="lin")
 dev.off()
 
-# Create the images for the following classification (I chose nir, red and green 
-# in place of natural colours since those bands helped to differentiate classes) 
+# Create the images for the following classification (I chose nir, red and green bands 
+# in place of natural colours combination since those bands helped to differentiate classes) 
 plotRGB(al21, 4, 3, 2, stretch="lin")
 plotRGB(al22, 4, 3, 2, stretch="lin")
 
@@ -144,12 +144,12 @@ dev.off()
 
 ## Let's calculate the number of pixels associated to each class to evaluate the covered area ##
 
-# 2021
+# Class percentages 2021
 frequencies1 <- freq(l21class)
 tot1 = ncell(l21class)
 percentages1 = frequencies1 * 100 /  tot1 # more user friendly output
 
-# 2022
+# Class percentages 2022
 frequencies2 <- freq(l22class)
 tot2 = ncell(l22class)
 percentages2 = frequencies2 * 100 /  tot2 # more user friendly output
