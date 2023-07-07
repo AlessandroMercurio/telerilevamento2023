@@ -154,8 +154,8 @@ frequencies2 <- freq(l22class)
 tot2 = ncell(l22class)
 percentages2 = frequencies2 * 100 /  tot2 # more user friendly output
 
-# Call percentages to see the results. Classes were identified through compairing the two images and 
-# using as a support a land cover map powered by esri (copernicus)
+# Call percentages to see the results. Classes were identified through compairing 
+the two images with a land cover map powered by esri (copernicus)
 
 percentages1
             value     count
