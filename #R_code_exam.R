@@ -29,7 +29,7 @@ library(patchwork) # combine separate ggplots into the same graph
 
 ## 2021 data
 
-# Import red, green, blue and nir bands and stack them in a single object 
+# Import red (B04), green (B03), blue (B02) and nir (B08) bands and stack them in a single object 
 
 data21 <- list.files(pattern="_21")
 import21 <- lapply(data21, raster)
