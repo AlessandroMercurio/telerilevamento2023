@@ -204,15 +204,15 @@ dev.off()
 ## Approximative calculation of water surface lost in km2 
 # (I used Qgis to measure the surface of the lake through digitalization of poligons) ##
 
-area21 =  (percent2021[1]*tot1*100)/10^8 
-area22 =  (percent2022[1]*tot1*100)/10^8
-area_lost = area21 - area22
+Water surface_2021 = 37.39 
+Water surface_2022 = 20.87
+Lost water surface = Water surface_2021 - Water surface_2022
 
 # Create a dataframe and a table to display results
 
-data <- c("area21", "area22", "area_lost")
-calculated_km2<- c(6.92709, 4.33067, 2.59642)
-Table2 <- data.frame(data,calculated_km2)
+Data <- c("Water surface_2021", "Water surface_2022", "Lost water surface")
+Water surface (square km) <- c(37.39, 20.87, 16.52)
+Table2 <- data.frame(Data, Water surface (square km))
 View(Table2) 
 
 
