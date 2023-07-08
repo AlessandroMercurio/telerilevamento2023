@@ -202,7 +202,7 @@ p1 + p2
 dev.off()
 
 ## Approximative calculation of water surface lost in km2 
-# (note that the 10x10 resolution isn't ideal to do a precise extimation) ##
+# (I used Qgis to measure the surface of the lake through digitalization of poligons) ##
 
 area21 =  (percent2021[1]*tot1*100)/10^8 
 area22 =  (percent2022[1]*tot1*100)/10^8
