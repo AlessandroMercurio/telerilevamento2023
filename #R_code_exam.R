@@ -187,18 +187,16 @@ ggplot(Table1, aes(x=cover, y=percent2021, color=cover)) + geom_bar(stat="identi
 ggplot(Table1, aes(x=cover, y=percent2022, color=cover)) + geom_bar(stat="identity", fill="white")
 
 p1 <- ggplot(Table1, aes(x=cover, y=percent2021, color=cover)) + geom_bar(stat="identity", fill="white") +
-  ggtitle(" Year 2021") +
-  ylim(c(0,50))
+  ggtitle(" Year 2021") + ylim(c(0,50))
 
 p2 <- ggplot(Table1, aes(x=cover, y=percent2022, color=cover)) + geom_bar(stat="identity", fill="white")+
-  ggtitle(" Year 2022") +
-  ylim(c(0,50))
+  ggtitle(" Year 2022") + ylim(c(0,50))
 
-p1+p2
+ggarrange(p1, p2, ncol=2, nrow=1, common.legend = TRUE,legend="bottom")
 
 # Save plot
 jpeg("p1+p2.jpg", 1200, 680)
-p1 + p2
+ggarrange(p1, p2, ncol=2, nrow=1, common.legend = TRUE,legend="bottom")
 dev.off()
 
 ## Let's focus on the water body change considering the 2021 situation as the starting situation (reservoir full capacity)##
