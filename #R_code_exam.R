@@ -201,19 +201,10 @@ jpeg("p1+p2.jpg", 1200, 680)
 p1 + p2
 dev.off()
 
-## Approximative calculation of water surface lost in km2 
-# (I used Qgis to measure the surface of the lake through digitalization of poligons) ##
+## Let's focus on the water body change considering the 2021 situation as the starting situation (reservoir full capacity)##
 
-Water surface_2021 = 37.39 
-Water surface_2022 = 20.87
-Lost water surface = Water surface_2021 - Water surface_2022
-
-# Create a dataframe and a table to display results
-
-Data <- c("Water surface_2021", "Water surface_2022", "Lost water surface")
-Water surface (square km) <- c(37.39, 20.87, 16.52)
-Table2 <- data.frame(Data, Water surface (square km))
-View(Table2) 
+Wl = ((6.99 - 4.37) * 100) / 6.99
+Wl
 
 
 ########                                                                                              ########
