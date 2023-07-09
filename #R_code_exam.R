@@ -17,6 +17,7 @@ setwd("C:/lab/telerilevamento_esame")
 # Call all the packages needed for the analysis
 library(raster)    # analysis and modeling of spatial data
 library(ggplot2)   # for creating graphs
+library(ggpubr)    # to add a common legend in ggplot
 library(patchwork) # combine separate ggplots into the same graph
 
 
@@ -159,22 +160,22 @@ percentages2 = frequencies2 * 100 /  tot2 # more user friendly output
 
 percentages1
             value     count
-[1,] 0.0001009082 44.230373 # maquis shrubland
+[1,] 0.0001009082 44.230373 # spontaneous vegetation 
 [2,] 0.0002018163  6.991927 # water
 [3,] 0.0003027245  5.019173 # granitic sand
 [4,] 0.0004036327 33.592936 # agro-forestry
-[5,] 0.0005045409 10.165590 # non-irrigated land
+[5,] 0.0005045409 10.165590 # non-irrigated
 > percentages2
             value    count
-[1,] 0.0001008074 45.54749 # maquis shrubland
+[1,] 0.0001008074 45.54749 # spontaneous vegetation
 [2,] 0.0002016147  4.37383 # water
 [3,] 0.0003024221  5.52253 # granitic sand
 [4,] 0.0004032295 33.61129 # agro-forestry
-[5,] 0.0005040368 10.94486 # non-irrigated land
+[5,] 0.0005040368 10.94486 # non-irrigated
 
 ## Create a dataframe to display the results in a Table ##
 
-cover <- c("Water", "Granitic sand", "Non-irrigated land", "Agro-forestry", "Maquis shrubland")  
+cover <- c("Water", "Granitic sand", "Non-irrigated", "Agro-forestry", "Spontaneous vegetation")  
 percent2021 <- c(6.99, 5.01, 10.17, 33.59, 44.23 )
 percent2022 <- c(4.37, 5.52, 10.94, 33.61, 45.54 )
 Table1 <- data.frame(cover,percent2021, percent2022)
@@ -199,7 +200,7 @@ jpeg("p1+p2.jpg", 1200, 680)
 ggarrange(p1, p2, ncol=2, nrow=1, common.legend = TRUE,legend="right")
 dev.off()
 
-## Let's focus on the water body change considering the 2021 situation as the starting situation (reservoir full capacity)##
+## Let's focus on the water body change considering the 2021 situation as the starting situation (reservoir full capacity) ##
 
 Wl = ((6.99 - 4.37) * 100) / 6.99
 Wl
