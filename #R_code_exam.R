@@ -1,7 +1,7 @@
 # Hi everyone! this is the code I prepared  for my exam in remote sensing, let's see it.
 # This project aim is to display how exceptionally dry spring and summer seasons between 2021 and 2022 impacted on 
 # Almendra reservoir capacity. On top of that, since drought is also likely to impact on vegetation health, I tried 
-# also to assess its effect on the land cover surrounding the lake.  
+# to assess its effect on the land cover surrounding the lake.  
 
 # Data from: https://scihub.copernicus.eu/dhus/#/home 
 # Project key points:
