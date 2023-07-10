@@ -34,9 +34,9 @@ Il seguente progetto punta a:
 \bigskip
 \begin{itemize} 
 
-    \item Osservare gli effetti delle stagioni siccitose del periodo 2021-2022 sull'estensione del bacino di Almendra, nella comunità autonoma di Castiglia e León, Spagna.
+    \item Osservare gli effetti delle stagioni siccitose del periodo 2021-2022 sull'estensione del bacino di Almendra, nella comunità autonoma di Castiglia e León, Spagna
     \bigskip
-    \item \pause Valutare gli effetti della suddetta siccità sulla salute della vegetazione circostante il bacino di Almendra.
+    \item \pause Valutare gli effetti della suddetta siccità sulla salute della vegetazione circostante il bacino di Almendra
 
 \end{itemize}
 \end{frame} 
@@ -55,7 +55,7 @@ Il seguente progetto punta a:
 \begin{frame} {Fasi di analisi}
 \begin{itemize} 
 
-    \item Stacking delle bande Sentinel-2 e visualizzazione delle immagini in RGB
+    \item Preparazione dei dati su Qgis e Stacking delle bande Sentinel-2 
     \bigskip
     \item \pause Classificazione non supervisionata per individuare l'area coperta dal bacino di Almendra 
     \bigskip
