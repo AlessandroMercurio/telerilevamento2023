@@ -70,7 +70,7 @@ plotRGB(al21, 3, 2, 1, stretch="lin")
 plotRGB(al22, 3, 2, 1, stretch="lin")
 
 # Saving images
-jpeg("RGB21.jpg", 900, 900)  # define extenction and resolution 
+jpeg("RGB21.jpg", 900, 900)  # define resolution 
 plotRGB(al21, 3, 2, 1, stretch="lin")
 dev.off()                    # it closes the plot box
 
@@ -155,7 +155,7 @@ frequencies2 <- freq(l22class)
 tot2 = ncell(l22class)
 percentages2 = frequencies2 * 100 /  tot2 # more user friendly output
 
-# Call percentages to see the results. Classes were identified through compairing the two images with a interactive 
+# Call percentages to see the results. Classes were identified compairing the two images with a interactive 
 # map from the Corine Land Cover datasets (Copernicus Land Monitoring Service)
 
 percentages1
@@ -200,7 +200,7 @@ jpeg("p1+p2.jpg", 1200, 680)
 ggarrange(p1, p2, ncol=2, nrow=1, common.legend = TRUE,legend="right")
 dev.off()
 
-## Let's focus on the water body change considering the 2021 situation as the starting situation (reservoir full capacity) ##
+## Let's focus on the water body change considering the 2021 situation as the starting situation (reservoir at full capacity) ##
 
 Wl = ((6.99 - 4.37) * 100) / 6.99
 Wl
