@@ -1,1 +1,215 @@
+# My Exam presentation in latex
 
+\documentclass{beamer} 
+\usepackage{graphicx} 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usetheme{Frankfurt} 
+\usecolortheme{orchid} 
+
+\title{Effetti geo-ecologici delle stagioni siccitose tra il 2021 e il 2022 sull'area del bacino di Almendra, Spagna}
+\author{Studente: Alessandro Mercurio \\ Docente: Duccio Rocchini}
+\institute{Alma Mater Studiorum - Università di Bologna \\ Telerilevamento Geo-ecologico} 
+\date{\scriptsize A.A. 2022/2023}
+
+\begin{document}
+
+\maketitle
+
+\AtBeginSection[] 
+{	
+\begin{frame}
+\frametitle{Indice}
+\tableofcontents[currentsection,currentsubsection,currentsubsubsection]
+\end{frame}
+}
+
+\section{Obiettivi}
+
+\begin{frame} {Obiettivi del progetto}
+
+Il seguente progetto punta a:
+
+\bigskip
+\begin{itemize} 
+
+    \item Osservare gli effetti delle stagioni siccitose del periodo 2021-2022 sull'estensione del bacino di Almendra, nella comunità autonoma di Castiglia e León, Spagna.
+    \bigskip
+    \item \pause Valutare gli effetti della suddetta siccità sulla salute della vegetazione circostante il bacino di Almendra.
+
+\end{itemize}
+\end{frame} 
+
+\section{Inquadramento}
+
+\begin{frame}{Inquadramento geografico}
+\centering 
+\includegraphics[width=0.8\textwidth] {inquadramento.jpg} \\
+\bigskip
+\footnotesize Area di studio: Almendra, Castiglia e Leòn, Spagna.(Google Earth)
+\end{frame}
+
+\section{Metodi}
+
+\begin{frame} {Fasi di analisi}
+\begin{itemize} 
+
+    \item Stacking delle bande Sentinel-2 e visualizzazione delle immagini in RGB
+    \bigskip
+    \item \pause Classificazione non supervisionata per individuare l'area coperta dal bacino di Almendra 
+    \bigskip
+    \item \pause Calcolo semi-quantitativo della superficie idrica persa tra il 2021 e il 2022
+    \bigskip
+    \item \pause Analisi multi-temporale di mappe di NDVI per valutare l'impatto della siccità sulla vegetazione
+
+\end{itemize}
+\end{frame}
+
+\section{Dati di partenza}
+
+\begin{frame}{Preparazione dei dati [Script]}
+\begin{tiny}
+\lstinputlisting[language=R] {Rscript.r}
+\end{tiny}
+\end{frame}
+
+\begin{frame} {Almendra reservoir, colori naturali}
+\begin{center}
+Almendra Reservoir 2021 vs 2022    
+\end{center}
+\centering 
+\bigskip
+\includegraphics[width=0.45\textwidth] 
+{nc21.jpg}  
+\includegraphics[width=0.45\textwidth]
+{nc22.jpg}
+\end{frame}
+
+\begin{frame} {Almendra reservoir, infrarosso}
+\begin{center}
+Almendra Reservoir 2021 vs 2022    
+\end{center}
+\centering 
+\bigskip
+\includegraphics[width=0.45\textwidth] 
+{lake21.jpg}  
+\includegraphics[width=0.45\textwidth]
+{lake22.jpg}
+\end{frame}
+
+\section{Evoluzione territoriale}
+
+\begin{frame}{Classificazione non supervisionata [Script]}
+\begin{tiny}
+\lstinputlisting[language=R] {Rscript_02.r}
+\end{tiny}
+\end{frame}
+
+\begin{frame}{Classificazione non supervisionata}
+\begin{center}
+Almendra Reservoir 2021 vs 2022    
+\end{center}
+\bigskip
+\centering 
+\includegraphics[width=1\textwidth] 
+{classes.jpg}  
+\end{frame}
+
+\begin{frame}{Quantificazione dei cambiamenti territoriali [Script]}
+\begin{tiny}
+\lstinputlisting[language=R] {Rscript_03.r}
+\end{tiny}   
+\end{frame}
+
+\begin{frame}{Quantificazione dei cambiamenti territoriali [Script]}
+\begin{tiny}
+\lstinputlisting[language=R] {Rscript_04.r}
+\end{tiny}   
+\end{frame}
+
+\begin{frame} {Risultati - 01}
+\centering
+\includegraphics[scale = 0.29]
+{Hist.png} 
+\end{frame}
+
+\begin{frame}{Risultati - 02}
+\begin{small}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Cover} & \textbf{Percent-2021} & \textbf{Percent-2022}\\
+\hline
+Water & \textcolor{red}{6.99} & \textcolor{red}{4.37}\\
+\hline
+Granitic sand & 5.01 & 5.52\\
+\hline
+Non-irrigated & 10.17 & 10.94\\
+\hline
+Agro-forestry & 33.59 & 33.61\\
+\hline
+Spontaneous vegetation & 44.23 & 45.55\\
+\hline
+\end{tabular}
+\end{center}
+\end{small}
+\begin{center}
+\caption{\textit{\scriptsize{Table 1: Territory changes}}}
+\end{center}
+
+\begin{equation}
+Wl = ((6.99 - 4.37) * 100 ) / 6.99 = \textbf{37.48}  
+\end{equation}
+\begin{center}
+\caption{\textit{\scriptsize {Eq1: Calcolo speditivo della percentuale d'acqua persa}}}
+\end{center}
+
+\end{frame}
+
+\section{Impatto sulla vegetazione}
+
+\begin{frame} {Analisi multi-temporale (NDVI) [Script]}
+\begin{tiny}
+\lstinputlisting[language=R] {Rscript_05.r}
+\end{tiny} 
+\end{frame}
+
+\begin{frame}{NDVI}
+\begin{center}
+NDVI 2021 vs 2022    
+\end{center}
+\centering 
+\bigskip
+\includegraphics[width=\textwidth] 
+{NDVI.png}  
+\end{frame}
+
+\begin{frame}{Differenza di NDVI}
+\begin{center}
+NDVI 2021 - NDVI 2022    
+\end{center}
+\centering 
+\bigskip
+\includegraphics[width=\textwidth] 
+{dif.png}      
+\end{frame}
+
+\section{Conclusioni}
+
+\begin{frame} {Discussione}
+\begin{itemize} 
+
+    \item Nonostante il bacino di Almendra sia attualmente in ripresa, i risultati del presente studio mostrano, al netto dei limiti insiti nel metodo, quanto la concomitanza di stagioni poco piovose e di temperature straordinariamente elevate abbia determinato una variazione tangibile del livello idrico nell’invaso nonchè un effetto  sulla salute della vegetazione circostante. \\
+    Tali osservazioni risultano in linea con i dati pubblicati dal programma Copernicus e dall' AEMET.
+    
+\end{itemize}
+\end{frame}
+
+\begin{frame} {Ringraziamenti}
+\begin{center}
+\huge Grazie dell'attenzione !    
+\end{center}
+\end{frame}
+
+\end{document}
